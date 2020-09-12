@@ -1,0 +1,32 @@
+Question 1: Given some sample data, write a program to answer the following:(dataset also in this folder)
+On Shopify, we have exactly 100 sneaker shops, and each of these shops sells only one model of shoe. 
+We want to do some analysis of the average order value (AOV). When we look at orders data over a 30 day window, 
+we naively calculate an AOV of $3145.13. Given that we know these shops are selling sneakers, 
+a relatively affordable item, something seems wrong with our analysis. 
+    1. Think about what could be going wrong with our calculation. Think about a better way to evaluate this data. 
+    2. What metric would you report for this dataset?
+    3. What is its value?
+	
+1. Okay first thing that jumped out is the Giant 704,000 order value. Also the order is for 2000 shoes to that's wack.
+Filtering on shop_id I see that shop sells 1 shoe for 352 so it's not just bad data. But 2000 shoes is a crazy outlier.
+Totalling the order amount and dividing by the # orders I get the same AOV of $3145.13. 
+
+2. So I think I could choose a simple or complex option. Either go simple and just take the mode of the data, or 
+work on removing the outliers and take the average again.
+
+3. Using an excel function I find the mode is 153.
+
+Looking to remove the outliers I think i'll play with the data of two stores. First is shop_id 42. So they sell shoes for $352
+and have some customers buying a couple. So that's fine i'll leave that. But i'll remove the orders of 2000 shoes. Firstly
+no human buys shoes 2000 at a time. Secondly they always happen at 4am with some at the exact same time and
+the same user_id, so that's pretty fishy.
+
+After that our AOV is 754.09 so that still seems high. 
+
+Next is shop_id 78. So uh, their shoes sell for $25,725 which is pretty wack. Although the purchases seem to come from
+real people at random times, it throws our numbers way out so i'm going to be cleaning this as well. After removing those
+purchases as well I end up with an AOV of 299.79.
+
+Also I was curious so I found the price each company sold their shoe for. The average price is $152 for a pair of sneakers
+from the average shop in our list. Also the Average purchase is for 1.9947 shoes so that lines up pretty closely with my
+AOV of $299.79.
